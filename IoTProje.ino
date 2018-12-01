@@ -1,21 +1,22 @@
-const int trig = 11;
-const int echo = 10;
-const int trig2 = 13;
-const int echo2 = 12;
+const int trig = 4;
+const int echo = 3;
+const int trig2 = 5;
+const int echo2 = 6;
 
-const int led = 9;
-const int led2 = 8;
+const int led = 2;
+const int led2 = 7;
 
-const int sol_g = 5;
-const int sol_i = 3;
-const int sag_i = 4;
-const int sag_g = 2;
+const int sol_g = 9;
+const int sol_i = 8;
+const int sag_i = 12;
+const int sag_g = 13;
 
 long sure = 0;
 long mesafe = 0;
 long sure2 = 0;
 long mesafe2 = 0;
 
+char msj;
 void setup() {
   // put your setup code here, to run once:
  pinMode(trig, OUTPUT);
@@ -34,6 +35,9 @@ void setup() {
 void loop() {
   // put your main code here, to run repeatedly:
 
+
+msj = Serial.read();   // seri mesaji msj değişkenine aktardık
+
  digitalWrite(trig, HIGH);
  delayMicroseconds(150);
  digitalWrite(trig ,LOW);
@@ -51,30 +55,34 @@ void loop() {
  mesafe2 = (sure2/2) / 29.1;
 
 
+// Serial.println (mesafe);
+ 
+ //Serial.println (mesafe2);
+ 
 
-if(mesafe < 30 && mesafe2 > 30)
+if(mesafe < 30 && mesafe2 > 30 && msj == '1')
 {  
  digitalWrite(led ,HIGH);
- digitalWrite(led ,LOW);
 
- digitalWrite(sag_i , LOW);
- digitalWrite(sol_i ,HIGH );
- digitalWrite(sag_g , HIGH);
- digitalWrite(sol_g , LOW);
+
+ digitalWrite(sag_i , HIGH);
+ digitalWrite(sol_i ,LOW );
+ digitalWrite(sag_g , LOW);
+ digitalWrite(sol_g , HIGH);
  
 }
-else if(mesafe > 30 && mesafe2 < 30)
+else if(mesafe > 30 && mesafe2 < 30 && msj == '1')
 {
     digitalWrite(led2 ,HIGH);
  // digitalWrite(led2 ,LOW);
-  digitalWrite(sol_i , LOW);
-  digitalWrite(sol_g , HIGH);
+  digitalWrite(sol_i , HIGH);
+  digitalWrite(sol_g , LOW);
   digitalWrite(sag_i , LOW);
   digitalWrite(sag_g , HIGH);
 }
 
  
-else if (mesafe < 30 && mesafe2 < 30)
+else if (mesafe < 30 && mesafe2 < 30 && msj == '1')
 {
   digitalWrite(led ,HIGH);
   digitalWrite(led2 ,HIGH);
@@ -84,16 +92,31 @@ else if (mesafe < 30 && mesafe2 < 30)
   digitalWrite(sag_i ,LOW);
   digitalWrite(sag_g ,LOW);
 }
-else{
-  digitalWrite(sol_g , HIGH);
-  digitalWrite(sol_i , LOW);
-  digitalWrite(sag_g , HIGH);
-  digitalWrite(sag_i , LOW);
+else if(mesafe > 30 && mesafe2 > 30 && msj == '1'){
+ 
+ digitalWrite(sag_i , HIGH);
+ digitalWrite(sol_i ,HIGH );
+ digitalWrite(sag_g , LOW);
+ digitalWrite(sol_g , LOW);
   digitalWrite(led ,LOW);
   digitalWrite(led2 ,LOW);
 }
  
-
+//if(msj == '1'){                    // gelen veri 1 ise led1 i yak
+//
+//    digitalWrite(sag_i , HIGH);
+// digitalWrite(sol_i ,HIGH );
+// digitalWrite(sag_g , HIGH);
+// digitalWrite(sol_g , HIGH);
+// delay(2500);
+//    
+//  }
+//  if(msj == '2'){                   // gelen veri 2 ise led1 i kapat
+// digitalWrite(sag_i , LOW);
+// digitalWrite(sol_i ,HIGH );
+// digitalWrite(sag_g , HIGH);
+// digitalWrite(sol_g , LOW);
+//  }
 //İleri geri kodları
 //Her harekette 3. led yak
 }
