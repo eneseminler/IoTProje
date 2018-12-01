@@ -102,21 +102,27 @@ else if(mesafe > 30 && mesafe2 > 30 && msj == '1'){
   digitalWrite(led2 ,LOW);
 }
  
-//if(msj == '1'){                    // gelen veri 1 ise led1 i yak
-//
-//    digitalWrite(sag_i , HIGH);
-// digitalWrite(sol_i ,HIGH );
-// digitalWrite(sag_g , HIGH);
-// digitalWrite(sol_g , HIGH);
-// delay(2500);
-//    
-//  }
-//  if(msj == '2'){                   // gelen veri 2 ise led1 i kapat
-// digitalWrite(sag_i , LOW);
-// digitalWrite(sol_i ,HIGH );
-// digitalWrite(sag_g , HIGH);
-// digitalWrite(sol_g , LOW);
-//  }
+if(msj == '2'){                    // gelen veri 1 ise led1 i yak
+
+ digitalWrite(sol_i , HIGH);
+  digitalWrite(sol_g , LOW);
+  digitalWrite(sag_i , LOW);
+  digitalWrite(sag_g , HIGH);
+ delay(2500);
+    
+  }
+  if(msj == '3'){                   // gelen veri 2 ise led1 i kapat
+  digitalWrite(sag_i , HIGH);
+ digitalWrite(sol_i ,LOW );
+ digitalWrite(sag_g , LOW);
+ digitalWrite(sol_g , HIGH);
+  }
+   if(msj == '4'){                   // gelen veri 2 ise led1 i kapat
+  digitalWrite(sag_i , LOW);
+ digitalWrite(sol_i ,LOW );
+ digitalWrite(sag_g , HIGH);
+ digitalWrite(sol_g , HIGH);
+  }
 //İleri geri kodları
 //Her harekette 3. led yak
 }
