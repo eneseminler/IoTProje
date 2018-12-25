@@ -53,17 +53,16 @@ msj = Serial.read();   // seri mesaji msj değişkenine aktardık
  
  sure2 = pulseIn(echo2 , HIGH);
  mesafe2 = (sure2/2) / 29.1;
-
-
+//
+//
 // Serial.println (mesafe);
- 
- //Serial.println (mesafe2);
- 
+// 
+// Serial.println (mesafe2);
+// 
 
 if(mesafe < 30 && mesafe2 > 30 && msj == '1')
 {  
  digitalWrite(led ,HIGH);
-
 
  digitalWrite(sag_i , HIGH);
  digitalWrite(sol_i ,LOW );
@@ -101,6 +100,7 @@ else if(mesafe > 30 && mesafe2 > 30 && msj == '1'){
   digitalWrite(led ,LOW);
   digitalWrite(led2 ,LOW);
 }
+
  
 if(msj == '2'){                    // gelen veri 1 ise led1 i yak
 
@@ -108,7 +108,7 @@ if(msj == '2'){                    // gelen veri 1 ise led1 i yak
   digitalWrite(sol_g , LOW);
   digitalWrite(sag_i , LOW);
   digitalWrite(sag_g , HIGH);
- delay(2500);
+
     
   }
   if(msj == '3'){                   // gelen veri 2 ise led1 i kapat
@@ -122,6 +122,25 @@ if(msj == '2'){                    // gelen veri 1 ise led1 i yak
  digitalWrite(sol_i ,LOW );
  digitalWrite(sag_g , HIGH);
  digitalWrite(sol_g , HIGH);
+  }
+  
+   if(msj == '5'){                   // gelen veri 2 ise led1 i kapat
+  digitalWrite(sag_i , LOW);
+ digitalWrite(sol_i ,LOW );
+ digitalWrite(sag_g , LOW);
+ digitalWrite(sol_g , LOW);
+digitalWrite(led ,HIGH);
+  digitalWrite(led2 ,HIGH);
+  delay(250);
+digitalWrite(led ,LOW);
+  digitalWrite(led2 ,LOW);
+  delay(250);
+digitalWrite(led ,HIGH);
+  digitalWrite(led2 ,HIGH);
+delay(250);
+digitalWrite(led ,LOW);
+  digitalWrite(led2 ,LOW);
+ 
   }
 //İleri geri kodları
 //Her harekette 3. led yak
